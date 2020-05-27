@@ -50,6 +50,7 @@ int color_cycle_timer;
  * screen, as needed for efficient rendering in fullscreen mode.
  */
 BOOL fullscreen = TRUE;
+BOOL borderless = FALSE;
 int showintrodebug = 1;
 #ifdef _DEBUG
 int questdebug = -1;
@@ -356,6 +357,7 @@ static void print_help_and_exit()
 	printf("    %-20s %-30s\n", "-n", "Skip startup videos");
 	printf("    %-20s %-30s\n", "-f", "Display frames per second");
 	printf("    %-20s %-30s\n", "-x", "Run in windowed mode");
+	printf("    %-20s %-30s\n", "-b", "Run in boderless windowed mode");
 #ifdef _DEBUG
 	printf("\nDebug options:\n");
 	printf("    %-20s %-30s\n", "-d", "Increaased item drops");
@@ -408,6 +410,11 @@ void diablo_parse_flags(int argc, char **argv)
 			EnableFrameCount();
 		} else if (strcasecmp("-x", argv[i]) == 0) {
 			fullscreen = FALSE;
+		} else if (strcasecmp("-b", argv[i]) == 0) {
+		{
+			borderless = TRUE;
+			fullscreen = FALSE;
+		}
 #ifdef _DEBUG
 		} else if (strcasecmp("-^", argv[i]) == 0) {
 			debug_mode_key_inverted_v = TRUE;

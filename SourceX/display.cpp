@@ -83,7 +83,6 @@ bool SpawnWindow(const char *lpWindowName, int nWidth, int nHeight)
 		if (fullscreen) {
 			flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
 		}
-		flags |= SDL_WINDOW_RESIZABLE;
 
 		char scaleQuality[2] = "2";
 		DvlStringSetting("scaling quality", scaleQuality, 2);
@@ -91,6 +90,8 @@ bool SpawnWindow(const char *lpWindowName, int nWidth, int nHeight)
 	} else if (fullscreen) {
 		flags |= SDL_WINDOW_FULLSCREEN;
 	}
+	if (borderless)
+		flags |= SDL_WINDOW_BORDERLESS;
 
 	if (grabInput) {
 		flags |= SDL_WINDOW_INPUT_GRABBED;
